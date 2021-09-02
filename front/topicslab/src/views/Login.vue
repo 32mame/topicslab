@@ -15,7 +15,7 @@
             <InputText id="password" type="password" v-model="password" />
           </div>
         </div>
-        <span>{{message}}</span>
+        <span class="style-red">{{message}}</span><!--きっとここ６番赤にする問題-->
         <div class="p-field">
           <Button icon="pi pi-check" label="Login" v-on:click="login" />
         </div>
@@ -70,6 +70,10 @@ export default {
 .p-card-content {
   .fields {
     text-align: center;
+  }
+
+  span.style-red {
+    color: red;
   }
 
   .p-field {
