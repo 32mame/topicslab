@@ -8,6 +8,9 @@
         <div class="body-text">
           {{topic.body}}
         </div>
+        <span><!--8変更点-->
+          <button>1</button>
+        </span>
       </template>
       <template #footer>
         <span>

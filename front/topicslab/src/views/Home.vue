@@ -15,6 +15,13 @@ export default {
   name: 'Home',
   components: {
     AllTopics
+  },
+  mounted () {
+    if (localStorage.getItem('authenticated') !== 'true') {
+      this.$router.push('/login')
+      return
+    }
+    this.getUser()
   }
 }
 </script>
