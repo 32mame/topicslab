@@ -16,12 +16,11 @@ export default {
   components: {
     AllTopics
   },
+  // 14変更
   mounted () {
     if (localStorage.getItem('authenticated') !== 'true') {
       this.$router.push('/login')
-      return
     }
-    this.getUser()
   }
 }
 </script>
