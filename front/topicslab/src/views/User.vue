@@ -5,6 +5,16 @@
         {{user.name}}
       </template>
     </Card>
+      <TabView>
+        <TabPanel header="トピック">
+          <Card>
+            aaa
+          </Card>
+        </TabPanel>
+        <TabPanel header="コメント">
+          aaa
+        </TabPanel>
+      </TabView>
   </div>
 </template>
 
