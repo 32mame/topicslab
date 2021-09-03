@@ -12,6 +12,7 @@
   <div class="content">
     <router-view/>
   </div>
+  </div>
   <p><small>&copy; TopicsLab All Rights Reserved.</small></p>
 </template>
 
