@@ -56,6 +56,7 @@ export default {
         })
     },
     withdraw () {
+      location.href = 'http://localhost:8080/'
       //
     },
     getUser () {

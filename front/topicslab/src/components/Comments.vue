@@ -6,6 +6,10 @@
       </template>
       <div class="comment-text">
         {{comment.body}}
+        <span>
+          <span>いいね！</span>
+          <button @click="countUp">{{ count }}</button>
+        </span>
       </div>
     </Fieldset>
   </div>
@@ -16,6 +20,16 @@ export default {
   name: 'Comments',
   props: {
     comments: Array
+  },
+  data () {
+    return {
+      count: 0
+    }
+  },
+  methods: {
+    countUp () {
+      this.count++
+    }
   }
 }
 </script>
