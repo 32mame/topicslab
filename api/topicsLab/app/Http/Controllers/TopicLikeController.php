@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
-use Illuminate\Support\Facades\Hash;
+use App\Models\TopicLike;
 use Illuminate\Http\Request;
 
-class UserController extends Controller
+class TopicLikeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -36,33 +35,27 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $user = new User;
-        $user->name = $request->name;
-        $user->email = $request->email;
-        $user->password = Hash::make($request->password);
-        $user->save();
-
-        return $user;
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  User  $user
+     * @param  \App\Models\TopicLike  $topicLike
      * @return \Illuminate\Http\Response
      */
-    public function show(User $user)
+    public function show(TopicLike $topicLike)
     {
-        return User::where('name', $user->name)->with('user', 'comments.user')->get();
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\TopicLike  $topicLike
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(TopicLike $topicLike)
     {
         //
     }
@@ -71,10 +64,10 @@ class UserController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Models\TopicLike  $topicLike
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, TopicLike $topicLike)
     {
         //
     }
@@ -82,10 +75,10 @@ class UserController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Models\TopicLike  $topicLike
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(TopicLike $topicLike)
     {
         //
     }
