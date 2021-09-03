@@ -17,7 +17,7 @@
       </div>
       <div class="p-field">
         <Button icon="pi pi-check" label="Save" v-on:click="submit" />
-        <p>{{messages.submit}}</p>
+        <p class="style-red">{{messages.submit}}</p>
       </div>
     </template>
   </Card>
@@ -87,5 +87,8 @@ export default {
 .p-field * {
   display: block;
   width: 100%;
+}
+span.style-red {
+  color: red;
 }
 </style>

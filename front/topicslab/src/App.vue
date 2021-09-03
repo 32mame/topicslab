@@ -12,10 +12,7 @@
   <div class="content">
     <router-view/>
   </div>
-    <footer>
-      <p id="copyright">© topicslab Inc. 2020</p>
-    </footer>
-  </div>
+  <p><small>&copy; TopicsLab All Rights Reserved.</small></p>
 </template>
 
 <script>

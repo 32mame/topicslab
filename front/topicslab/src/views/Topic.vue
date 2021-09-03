@@ -7,6 +7,10 @@
       <template #content>
         <div class="body-text">
           {{topic.body}}
+          <span>いいね！</span>
+        <span>
+          <button @click="countUp"> {{ count }} </button>
+        </span>
         </div>
       </template>
       <template #footer>
@@ -15,7 +19,7 @@
         </span>
       </template>
     </Card>
-    <Comments :comments="this.comments" />
+    <Comments :comments="this.comments"/>
     <CommentForm :topicId="this.topic.id" @sentComment="receiveComment" />
   </div>
 </template>
@@ -36,7 +40,9 @@ export default {
       topic: {},
       user: {},
       comments: [],
-      id: null
+      id: null,
+      count: 0,
+      count1: 0
     }
   },
   mounted () {
@@ -71,6 +77,9 @@ export default {
     },
     receiveComment (comment) {
       this.comments.push(comment)
+    },
+    countUp () {
+      this.count++
     }
   }
 }
