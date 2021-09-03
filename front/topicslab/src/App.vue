@@ -1,11 +1,12 @@
 <template>
+  <div>
   <div id="nav">
-    <router-link to="/">Home</router-link> |
+    <router-link to="/">ホーム</router-link> |
     <template v-if="authenticated">
-      <a>mypage</a>
+      <router-link :to="`/mypage`">マイページ</router-link>
     </template>
     <template v-else>
-      <router-link to="/login">login</router-link>
+      <router-link to="/login">ログイン</router-link>
     </template>
   </div>
   <div class="content">
@@ -15,6 +16,7 @@
 </template>
 
 <script>
+
 export default {
   data () {
     return {
@@ -68,4 +70,10 @@ body {
     }
   }
 }
+
+#copyright{
+  text-align: center;
+  color:#fff;
+}
+
 </style>

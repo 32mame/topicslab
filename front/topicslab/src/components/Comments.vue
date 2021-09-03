@@ -2,10 +2,16 @@
   <div>
     <Fieldset v-for="comment in comments" :key="comment.id">
       <template #legend>
-        <span>{{comment.user.name}}</span>
+        <span><!--10変更点-->
+          <router-link :to="`/user/${comment.user.id}`">{{comment.user.name}}</router-link>
+        </span>
       </template>
       <div class="comment-text">
         {{comment.body}}
+        <span>
+          <span>いいね！</span>
+          <button @click="countUp">{{ count }}</button>
+        </span>
       </div>
     </Fieldset>
   </div>
@@ -16,6 +22,16 @@ export default {
   name: 'Comments',
   props: {
     comments: Array
+  },
+  data () {
+    return {
+      count: 0
+    }
+  },
+  methods: {
+    countUp () {
+      this.count++
+    }
   }
 }
 </script>

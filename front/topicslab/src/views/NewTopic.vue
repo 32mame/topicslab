@@ -1,23 +1,23 @@
 <template>
   <Card>
     <template #title>
-      新しいTopicを投稿しよう
+      新しいトピックを投稿しよう
     </template>
     <template #content>
       <div class="p-field">
-        <label for="title">Topicタイトル</label>
+        <label for="title">トピックタイトル</label>
         <InputText v-model="title" id="title" type="text" aria-describedby="title-help" />
         <small id="title-help">タイトルを入力してください。</small>
         <p>{{messages.title}}</p>
       </div>
       <div class="p-field">
-        <label for="title">Topic内容</label>
+        <label for="title">トピック内容</label>
         <Textarea v-model="body" :autoResize="true" rows="10" />
         <p>{{messages.body}}</p>
       </div>
       <div class="p-field">
         <Button icon="pi pi-check" label="Save" v-on:click="submit" />
-        <p>{{messages.submit}}</p>
+        <p class="style-red">{{messages.submit}}</p>
       </div>
     </template>
   </Card>
@@ -87,5 +87,8 @@ export default {
 .p-field * {
   display: block;
   width: 100%;
+}
+span.style-red {
+  color: red;
 }
 </style>

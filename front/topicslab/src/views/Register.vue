@@ -2,7 +2,7 @@
   <div>
     <Card>
       <template #title>
-        Register
+        ユーザー登録
       </template>
       <template #content>
         <div class="fields">
@@ -61,6 +61,7 @@ export default {
             .then((res) => {
               if (res.status === 201) {
                 alert('ユーザー登録成功')
+                this.$router.push('login')
               } else {
                 this.message = 'ユーザー登録に失敗しました。'
               }
