@@ -2,7 +2,7 @@
   <div>
     <Card>
       <template #content>
-        {{user.name}}<!--なぜかいなくなったユーザー名さん~>帰ってきた-->
+        {{user.name}}
       </template>
     </Card>
       <TabView>
