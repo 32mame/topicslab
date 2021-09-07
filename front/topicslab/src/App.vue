@@ -14,6 +14,7 @@
   </div>
   </div>
   <p><small>&copy; TopicsLab All Rights Reserved.</small></p>
+  </div>
 </template>
 
 <script>
