@@ -28,6 +28,11 @@ Route::post('/register', [
     'store'
 ]);
 
+Route::get('/withdraw', [
+    App\Http\Controllers\UserController::class,
+    'destroy'
+]);
+
 Route::post('/logout', [
     App\Http\Controllers\LoginController::class,
     'logout'
@@ -57,3 +62,5 @@ Route::middleware('auth:sanctum')->get('/user/{user}', [
     App\Http\Controllers\UserController::class,
     'show'
 ]);
+
+
