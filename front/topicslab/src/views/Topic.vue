@@ -80,6 +80,21 @@ export default {
     },
     countUp () {
       this.count++
+      axios.get('/sanctum/csrf-cookie')
+        .then(() => {
+          axios.post(`/api/topic/${this.id}`)
+            .then(res => {
+              console.log(res)
+              localStorage.setItem('authenticated', 'false')
+              this.$router.push('/')
+            })
+            .catch(err => {
+              console.log(err)
+            })
+        })
+        .catch((err) => {
+          alert(err)
+        })
     }
   }
 }

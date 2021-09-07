@@ -1,5 +1,4 @@
 <template>
-  <div>
   <div id="nav">
     <router-link to="/">ホーム</router-link> |
     <template v-if="authenticated">
