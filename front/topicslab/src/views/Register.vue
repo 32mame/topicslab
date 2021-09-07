@@ -31,6 +31,10 @@
 <script>
 import axios from '@/supports/axios'
 
+function alert1 (errmessage) {
+  alert(errmessage)
+}
+
 export default {
   name: 'Register',
   data () {
@@ -68,6 +72,7 @@ export default {
             .catch((err) => {
               console.log(err)
               this.message = 'ユーザー登録に失敗しました。'
+              alert1(err)
             })
         })
         .catch((err) => {

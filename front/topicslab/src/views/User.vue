@@ -3,6 +3,10 @@
     <Card>
       <template #content>
         {{user.name}}
+        <div>
+          <!-- <Textarea v-model="user.description" :autoResize="true" rows="5" /> -->
+          {{user.description}}
+        </div>
       </template>
     </Card>
       <TabView>
@@ -20,6 +24,10 @@
 
 <script>
 import axios from '@/supports/axios'
+
+function alert1 (errmessage) {
+  alert(errmessage)
+}
 
 export default {
   name: 'user',
@@ -56,6 +64,7 @@ export default {
             })
             .catch((err) => {
               console.log(err)
+              alert1(err)
             })
         })
         .catch((err) => {

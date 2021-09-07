@@ -38,6 +38,11 @@ Route::get('/topics', [
     'index'
 ]);
 
+Route::post('/update', [
+    App\Http\Controllers\UserController::class,
+    'update'
+]);
+
 Route::middleware('auth:sanctum')->get('/topic/{topic}', [
     App\Http\Controllers\TopicController::class,
     'show'

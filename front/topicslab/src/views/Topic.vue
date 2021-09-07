@@ -29,6 +29,10 @@ import axios from '@/supports/axios'
 import Comments from '@/components/Comments'
 import CommentForm from '@/components/CommentForm'
 
+function alert1 (errmessage) {
+  alert(errmessage)
+}
+
 export default {
   name: 'Topic',
   components: {
@@ -69,6 +73,7 @@ export default {
             })
             .catch((err) => {
               console.log(err)
+              alert1(err)
             })
         })
         .catch((err) => {
