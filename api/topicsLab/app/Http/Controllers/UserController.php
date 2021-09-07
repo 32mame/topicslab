@@ -53,7 +53,7 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        return User::where('id', $user->id)->with('comments', 'topics')->get();
+        return User::where('id', $user->id)->with('comments', 'topics')->get();//大量のコメントと大量のトピック
     }
 
     /**
