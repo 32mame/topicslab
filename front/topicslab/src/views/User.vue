@@ -5,7 +5,6 @@
         {{user.name}}<!--なぜかいなくなったユーザー名さん~>帰ってきた-->
       </template>
     </Card>
-
       <TabView>
         <TabPanel header="トピック">
           <template v-if="noTopic">
@@ -16,7 +15,7 @@
             <Fieldset v-for="topic in topics" :key="topic.id"><!--コメントのカード枠-->
             <template #legend>
               <span><!--10変更点-->
-                <router-link :to="`/user/${user.id}`">{{user.name}}</router-link>
+                <router-link :to="`/topic/${topic.id}`">トピックへ</router-link>
               </span>
             </template>
             <Card>
@@ -45,7 +44,7 @@
             <Fieldset v-for="comment in comments" :key="comment.id"><!--コメントのカード枠-->
             <template #legend>
               <span><!--10変更点-->
-                <router-link :to="`/user/${user.id}`">{{user.name}}</router-link>
+                <router-link :to="`/topic/${comment.topic_id}`">トピックへ</router-link>
               </span>
             </template>
             <div>
