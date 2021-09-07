@@ -28,6 +28,11 @@ Route::post('/register', [
     'store'
 ]);
 
+Route::get('/withdraw', [
+    App\Http\Controllers\UserController::class,
+    'destroy'
+]);
+
 Route::post('/logout', [
     App\Http\Controllers\LoginController::class,
     'logout'
@@ -71,5 +76,3 @@ Route::middleware('auth:sanctum')->post('/comments/{id}', [
     App\Http\Controllers\CommentLikeController::class,
     'store'
 ]);
-
-

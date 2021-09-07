@@ -58,14 +58,23 @@ export default {
     withdraw () {
       axios.get('/sanctum/csrf-cookie')
         .then(() => {
-          axios.post('/api/withdraw')
-            .then(res => {
-              console.log(res)
-              localStorage.setItem('authenticated', 'false')
-              this.$router.push('/home')
+          axios.get('/api/withdraw')
+            .then((res) => {
+              if (res.status === 200) {
+                alert('ユーザー削除成功')
+                localStorage.setItem('authenticated', 'false')
+                axios.post('/api/logout')
+                  .then(res => {
+                    console.log(res)
+                    this.$router.push('/')
+                  })
+              } else {
+                this.message = 'ユーザー削除に失敗しました。'
+              }
             })
-            .catch(err => {
+            .catch((err) => {
               console.log(err)
+              this.message = 'ユーザー削除に失敗しました。'
             })
         })
         .catch((err) => {
