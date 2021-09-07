@@ -44,11 +44,11 @@ class User extends Authenticatable
 
     public function topics()
     {
-        return $this->hasMany(Topic::class);
+        return $this->hasMany(Topic::class);//hasMany複数の時に使用
     }
 
     public function comments()
     {
-        return $this->hasMany(Comment::class);
+        return $this->hasMany(Comment::class);//hasMany複数の時に使用
     }
 }
