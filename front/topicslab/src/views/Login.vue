@@ -19,11 +19,9 @@
         <div class="p-field">
           <Button icon="pi pi-check" label="Login" v-on:click="login" />
         </div>
-        <template v-if="loggedIn === false"><!--loggedInの値がfalseなら表示(逆にtrueは"loggedIn"ログイン単体)-->
-          <div>
-            <router-link to="/register">ユーザー登録</router-link>
-          </div>
-        </template>
+        <div>
+          <router-link to="/register">ユーザー登録</router-link>
+        </div>
       </template>
     </Card>
   </div>
@@ -39,12 +37,8 @@ export default {
       email: '',
       password: '',
       error: false,
-      message: '',
-      loggedIn: false
+      message: ''
     }
-  },
-  mounted () {
-    this.loggedIn = localStorage.getItem('authenticated') === 'true'
   },
   methods: {
     login () {
