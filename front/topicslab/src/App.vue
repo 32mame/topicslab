@@ -1,19 +1,18 @@
 <template>
   <div>
-  <div id="nav">
-    <router-link to="/">ホーム</router-link> |
-    <template v-if="authenticated">
-      <router-link :to="`/mypage`">マイページ</router-link>
-    </template>
-    <template v-else>
-      <router-link to="/login">ログイン</router-link>
-    </template>
-  </div>
-  <div class="content">
-    <router-view/>
-  </div>
-  </div>
-  <p><small>&copy; TopicsLab All Rights Reserved.</small></p>
+    <div id="nav">
+        <router-link to="/">ホーム</router-link> |
+        <template v-if="authenticated">
+          <router-link :to="`/mypage`">マイページ</router-link>
+        </template>
+        <template v-else>
+          <router-link to="/login">ログイン</router-link>
+        </template>
+    </div>
+    <div class="content">
+      <router-view/>
+    </div>
+    <p><small>&copy; TopicsLab All Rights Reserved.</small></p>
   </div>
 </template>
 
