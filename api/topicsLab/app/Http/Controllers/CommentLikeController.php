@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\CommentLike;
+use App\Models\Comment;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CommentLikeController extends Controller
 {
@@ -35,7 +37,14 @@ class CommentLikeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $user = Auth::user();
+
+        $comment_like = new CommentLike;
+        $comment_like->user()->associate($user);
+        $comment_like->topic()->associate($request->id);
+        $comment_like->save();
+
+        return $comment_like;
     }
 
     /**

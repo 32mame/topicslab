@@ -38,6 +38,11 @@ Route::post('/logout', [
     'logout'
 ]);
 
+Route::post('/withdraw', [
+    App\Http\Controllers\UserController::class,
+    'destory'
+]);
+
 Route::get('/topics', [
     App\Http\Controllers\TopicController::class,
     'index'
@@ -63,4 +68,11 @@ Route::middleware('auth:sanctum')->get('/user/{user}', [
     'show'
 ]);
 
-
+Route::middleware('auth:sanctum')->post('/topic/{id}', [
+    App\Http\Controllers\TopicLikeController::class,
+    'store'
+]);
+Route::middleware('auth:sanctum')->post('/comments/{id}', [
+    App\Http\Controllers\CommentLikeController::class,
+    'store'
+]);

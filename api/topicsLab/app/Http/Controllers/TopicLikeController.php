@@ -3,7 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\TopicLike;
+use App\Models\Topic;
 use Illuminate\Http\Request;
+
+use Illuminate\Support\Facades\Auth;
+
 
 class TopicLikeController extends Controller
 {
@@ -35,7 +39,16 @@ class TopicLikeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
+        $user = Auth::user();
+       
+        
+        $topic_like = new TopicLike;
+        $topic_like->user()->associate($user);
+        $topic_like->topic()->associate($request->id);
+        $topic_like->save();
+
+        return $topic_like;
     }
 
     /**
