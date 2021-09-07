@@ -10,7 +10,7 @@
         {{comment.body}}
         <span>
           <span>いいね！</span>
-          <button @click="countUp">{{ count }}</button>
+          <button @click="countUp()">{{ count }}</button>
         </span>
       </div>
     </Fieldset>
@@ -46,8 +46,6 @@ export default {
           axios.post(`/api/comments/${this.id}`)
             .then(res => {
               console.log(res)
-              localStorage.setItem('authenticated', 'false')
-              this.$router.push('/')
             })
             .catch(err => {
               console.log(err)
