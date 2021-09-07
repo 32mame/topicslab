@@ -32,6 +32,10 @@
 <script>
 import axios from '@/supports/axios'
 
+function alert1 (errmessage) {
+  window.alert(errmessage)
+}
+
 export default {
   name: 'Login',
   data () {
@@ -65,6 +69,7 @@ export default {
             .catch((err) => {
               console.log(err)
               this.message = 'ログインに失敗しました。'
+              alert1(err)
             })
         })
         .catch((err) => {

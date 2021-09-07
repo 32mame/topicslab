@@ -32,6 +32,10 @@
 <script>
 import axios from '@/supports/axios'
 
+function alert1 (errmessage) {
+  alert(errmessage)
+}
+
 export default {
   name: 'NewTopic',
   data () {
@@ -79,6 +83,7 @@ export default {
             .catch((err) => {
               console.log(err)
               this.messages.submit = '送信に失敗しました。'
+              alert1(err)
             })
         })
         .catch((err) => {

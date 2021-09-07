@@ -2,7 +2,11 @@
   <div>
     <Card>
       <template #content>
-        {{user.name}}<!--なぜかいなくなったユーザー名さん~>帰ってきた-->
+        {{user.name}}
+        <div>
+          <!-- <Textarea v-model="user.description" :autoResize="true" rows="5" /> -->
+          {{user.description}}
+        </div>
       </template>
     </Card>
 
@@ -64,6 +68,10 @@
 <script>
 import axios from '@/supports/axios'
 
+function alert1 (errmessage) {
+  alert(errmessage)
+}
+
 export default {
   name: 'user',
   data () {
@@ -105,6 +113,7 @@ export default {
             })
             .catch((err) => {
               console.log(err)
+              alert1(err)
             })
         })
         .catch((err) => {
