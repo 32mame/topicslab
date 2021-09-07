@@ -8,11 +8,12 @@
 
       <TabView>
         <TabPanel header="トピック">
-          <template v-if="user.topics == 0">
-            <p>トピックはありません。</p>
+          <template v-if="noTopic">
+              <p v-if="loaded">トピックはありません。</p> <!--!loadedでfalse-->
+              <p v-else>ロード中です。</p>
           </template>
           <template v-else>
-            <Fieldset v-for="topic in user.topics" :key="topic.id"><!--コメントのカード枠-->
+            <Fieldset v-for="topic in topics" :key="topic.id"><!--コメントのカード枠-->
             <template #legend>
               <span><!--10変更点-->
                 <router-link :to="`/user/${user.id}`">{{user.name}}</router-link>
@@ -37,22 +38,24 @@
           </template>
         </TabPanel>
         <TabPanel header="コメント">
-          <template v-if="user.comments == 0">
-            <p>コメントはありません。</p>
-          </template>
-          <Fieldset v-for="comment in user.comments" :key="comment.id"><!--コメントのカード枠-->
-          <template #legend>
-            <span><!--10変更点-->
-              <router-link :to="`/user/${user.id}`">{{user.name}}</router-link>
-            </span>
-          </template>
-          <div>
-            <div class="comment-text">
-              <!--{{comment.body}}-->
-              {{comment.body}}<!--絶対パスだと値が取れるが…うーん????????????????-->
+          <template v-if="noComment">
+              <p>コメントはありません。</p>
+            </template>
+            <template v-else>
+            <Fieldset v-for="comment in comments" :key="comment.id"><!--コメントのカード枠-->
+            <template #legend>
+              <span><!--10変更点-->
+                <router-link :to="`/user/${user.id}`">{{user.name}}</router-link>
+              </span>
+            </template>
+            <div>
+              <div class="comment-text">
+                <!--{{comment.body}}-->
+                {{comment.body}}<!--絶対パスだと値が取れるが…うーん????????????????-->
+              </div>
             </div>
-          </div>
-          </Fieldset>
+            </Fieldset>
+          </template>
         </TabPanel>
       </TabView>
   </div>
@@ -66,7 +69,10 @@ export default {
   data () {
     return {
       id: null,
-      user: {}
+      user: {},
+      comments: [],
+      topics: [],
+      loaded: false
     }
   },
   mounted () {
@@ -90,8 +96,9 @@ export default {
               console.log(res)
               if (res.status === 200) {
                 this.user = res.data[0]
-                this.comments = res.data[5]
-                this.topics = res.data.topics
+                this.comments = this.user.comments
+                this.topics = this.user.topics
+                this.loaded = true
               } else {
                 console.log('取得失敗')
               }
@@ -103,6 +110,17 @@ export default {
         .catch((err) => {
           alert(err)
         })
+    }
+  },
+  computed: {
+    // 算出 getter 関数
+    noTopic: function () {
+      // `this` は vm インスタンスを指します
+      return this.topics.length === 0
+    },
+    noComment: function () {
+      // `this` は vm インスタンスを指します
+      return this.comments.length === 0
     }
   }
 }
