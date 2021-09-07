@@ -2,7 +2,7 @@
   <div>
     <Card>
       <template #title>
-        mypage
+        マイページ
       </template>
       <template #content>
         {{user.name}}
@@ -20,9 +20,9 @@
         </div>
       </template>
       <template #footer>
-        <Button label="Create Topic" v-on:click="toNewTopic" />
-        <Button label="Logout" class="p-button-warning" v-on:click="logout" />
-        <Button label="Withdraw" class="p-button-danger" v-on:click="withdraw" />
+        <Button label="新規投稿" v-on:click="toNewTopic" />
+        <Button label="ログアウト" class="p-button-warning" v-on:click="logout" />
+        <Button label="アカウント削除" class="p-button-danger" v-on:click="withdraw" />
       </template>
     </Card>
   </div>
@@ -78,7 +78,30 @@ export default {
         })
     },
     withdraw () {
-      //
+      axios.get('/sanctum/csrf-cookie')
+        .then(() => {
+          axios.get('/api/withdraw')
+            .then((res) => {
+              if (res.status === 200) {
+                alert('ユーザー削除成功')
+                localStorage.setItem('authenticated', 'false')
+                axios.post('/api/logout')
+                  .then(res => {
+                    console.log(res)
+                    this.$router.push('/')
+                  })
+              } else {
+                this.message = 'ユーザー削除に失敗しました。'
+              }
+            })
+            .catch((err) => {
+              console.log(err)
+              this.message = 'ユーザー削除に失敗しました。'
+            })
+        })
+        .catch((err) => {
+          alert(err)
+        })
     },
     getUser () {
       axios.get('/sanctum/csrf-cookie')

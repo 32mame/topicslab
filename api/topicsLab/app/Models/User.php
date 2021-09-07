@@ -7,10 +7,11 @@ use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable, SoftDeletes;
 
     /**
      * The attributes that are mass assignable.
@@ -44,6 +45,12 @@ class User extends Authenticatable
 
     public function topics()
     {
-        return $this->hasMany(Topic::class);
+        return $this->hasMany(Topic::class);//hasMany複数の時に使用
     }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);//hasMany複数の時に使用
+    }
+
 }

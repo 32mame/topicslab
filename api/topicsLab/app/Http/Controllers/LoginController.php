@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\User;
 
 class LoginController extends Controller
 {
@@ -15,15 +16,21 @@ class LoginController extends Controller
             'password' => 'required'
         ]);
 
+        $trashedUser = User::onlyTrashed()->where('email', $request->email)->exists();
+        if($trashedUser){
+            return response()->json([
+                'message' => 'DeletedUser'
+            ], 401);
+        }
         if (Auth::attempt($credentials)) {
             return response()->json([
                 'message' => 'success'
             ], 200);
-        } else {
-            return response()->json([
-                'message' => 'Unauthorized'
-            ], 401);
         }
+        return response()->json([
+            'message' => 'Unauthorized'
+        ], 401);
+        
     }
 
     public function logout()

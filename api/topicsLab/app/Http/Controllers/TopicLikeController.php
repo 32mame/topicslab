@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
-use Illuminate\Support\Facades\Hash;
+use App\Models\TopicLike;
+use App\Models\Topic;
 use Illuminate\Http\Request;
-use Illuminate\Validation\Rule;	
+
 use Illuminate\Support\Facades\Auth;
 
-class UserController extends Controller
+
+class TopicLikeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -38,33 +39,36 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $user = new User;
-        $user->name = $request->name;
-        $user->email = $request->email;
-        $user->password = Hash::make($request->password);
-        $user->save();
+        
+        $user = Auth::user();
+       
+        
+        $topic_like = new TopicLike;
+        $topic_like->user()->associate($user);
+        $topic_like->topic()->associate($request->id);
+        $topic_like->save();
 
-        return $user;
+        return $topic_like;
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  User  $user
+     * @param  \App\Models\TopicLike  $topicLike
      * @return \Illuminate\Http\Response
      */
-    public function show(User $user)
+    public function show(TopicLike $topicLike)
     {
-        return User::where('id', $user->id)->with('comments', 'topics')->get();//大量のコメントと大量のトピック
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\TopicLike  $topicLike
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(TopicLike $topicLike)
     {
         //
     }
@@ -73,28 +77,22 @@ class UserController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\TopicLike  $topicLike
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update(Request $request, TopicLike $topicLike)
     {
         //
-        $user = $request->user();
-
-        $user->description = $request->description;
-        $user->update();
-
-        return $user;
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Models\TopicLike  $topicLike
      * @return \Illuminate\Http\Response
      */
-    public function destroy()
+    public function destroy(TopicLike $topicLike)
     {
-        $user = Auth::user();
-        $user->delete();
+        //
     }
 }

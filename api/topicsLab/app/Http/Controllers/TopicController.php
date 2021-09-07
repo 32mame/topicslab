@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Topic;
 use Illuminate\Http\Request;
 
+
 class TopicController extends Controller
 {
     /**
@@ -54,7 +55,7 @@ class TopicController extends Controller
      */
     public function show(Topic $topic)
     {
-        return Topic::where('id', $topic->id)->with('user', 'comments.user')->get();
+        return Topic::where('id', $topic->id)->with('user', 'comments.user')->get();//単品のユーザーだった？不確定
     }
 
     /**

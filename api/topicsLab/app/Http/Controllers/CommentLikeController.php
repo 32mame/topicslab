@@ -2,13 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
-use Illuminate\Support\Facades\Hash;
+use App\Models\CommentLike;
+use App\Models\Comment;
 use Illuminate\Http\Request;
-use Illuminate\Validation\Rule;	
 use Illuminate\Support\Facades\Auth;
 
-class UserController extends Controller
+class CommentLikeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -38,33 +37,34 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $user = new User;
-        $user->name = $request->name;
-        $user->email = $request->email;
-        $user->password = Hash::make($request->password);
-        $user->save();
+        $user = Auth::user();
 
-        return $user;
+        $comment_like = new CommentLike;
+        $comment_like->user()->associate($user);
+        $comment_like->topic()->associate($request->id);
+        $comment_like->save();
+
+        return $comment_like;
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  User  $user
+     * @param  \App\Models\CommentLike  $commentLike
      * @return \Illuminate\Http\Response
      */
-    public function show(User $user)
+    public function show(CommentLike $commentLike)
     {
-        return User::where('id', $user->id)->with('comments', 'topics')->get();//大量のコメントと大量のトピック
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\CommentLike  $commentLike
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(CommentLike $commentLike)
     {
         //
     }
@@ -73,28 +73,22 @@ class UserController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\CommentLike  $commentLike
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update(Request $request, CommentLike $commentLike)
     {
         //
-        $user = $request->user();
-
-        $user->description = $request->description;
-        $user->update();
-
-        return $user;
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Models\CommentLike  $commentLike
      * @return \Illuminate\Http\Response
      */
-    public function destroy()
+    public function destroy(CommentLike $commentLike)
     {
-        $user = Auth::user();
-        $user->delete();
+        //
     }
 }

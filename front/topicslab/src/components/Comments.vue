@@ -10,7 +10,7 @@
         {{comment.body}}
         <span>
           <span>いいね！</span>
-          <button @click="countUp">{{ count }}</button>
+          <button @click="countUp()">{{ count }}</button>
         </span>
       </div>
     </Fieldset>
@@ -18,6 +18,7 @@
 </template>
 
 <script>
+import axios from '@/supports/axios'
 export default {
   name: 'Comments',
   props: {
@@ -25,12 +26,34 @@ export default {
   },
   data () {
     return {
+      topic: {},
+      user: {},
+      id: null,
       count: 0
+    }
+  },
+  mounted () {
+    this.id = this.$route.params.id
+    if (!this.id) {
+      alert('不正なIDです。')
     }
   },
   methods: {
     countUp () {
       this.count++
+      axios.get('/sanctum/csrf-cookie')
+        .then(() => {
+          axios.post(`/api/comments/${this.id}`)
+            .then(res => {
+              console.log(res)
+            })
+            .catch(err => {
+              console.log(err)
+            })
+        })
+        .catch((err) => {
+          alert(err)
+        })
     }
   }
 }
