@@ -17,7 +17,7 @@ class LoginController extends Controller
         ]);
 
         $trashedUser = User::onlyTrashed()->where('email', $request->email)->exists();
-        if($trashedUser){
+        if ($trashedUser) {
             return response()->json([
                 'message' => 'DeletedUser'
             ], 401);
@@ -30,7 +30,6 @@ class LoginController extends Controller
         return response()->json([
             'message' => 'Unauthorized'
         ], 401);
-        
     }
 
     public function logout()
