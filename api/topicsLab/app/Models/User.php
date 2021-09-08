@@ -52,5 +52,4 @@ class User extends Authenticatable
     {
         return $this->hasMany(Comment::class);//hasMany複数の時に使用
     }
-
 }
