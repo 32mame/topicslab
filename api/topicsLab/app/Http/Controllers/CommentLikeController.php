@@ -41,7 +41,7 @@ class CommentLikeController extends Controller
 
         $comment_like = new CommentLike;
         $comment_like->user()->associate($user);
-        $comment_like->topic()->associate($request->id);
+        $comment_like->comments()->associate($request->id);
         $comment_like->save();
 
         return $comment_like;
