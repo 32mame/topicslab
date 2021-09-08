@@ -2,10 +2,13 @@
   <div>
     <Card>
       <template #content>
-        {{user.name}}<!--なぜかいなくなったユーザー名さん~>帰ってきた-->
+        {{user.name}}
+        <div>
+          <!-- <Textarea v-model="user.description" :autoResize="true" rows="5" /> -->
+          {{user.description}}
+        </div>
       </template>
     </Card>
-
       <TabView>
         <TabPanel header="トピック">
           <template v-if="noTopic">
@@ -16,7 +19,7 @@
             <Fieldset v-for="topic in topics" :key="topic.id"><!--コメントのカード枠-->
             <template #legend>
               <span><!--10変更点-->
-                <router-link :to="`/user/${user.id}`">{{user.name}}</router-link>
+                <router-link :to="`/topic/${topic.id}`">トピックへ</router-link>
               </span>
             </template>
             <Card>
@@ -39,19 +42,19 @@
         </TabPanel>
         <TabPanel header="コメント">
           <template v-if="noComment">
-              <p>コメントはありません。</p>
+              <p v-if="loaded">コメントはありません。</p> <!--!loadedでfalse-->
+              <p v-else>ロード中です。</p>
             </template>
             <template v-else>
             <Fieldset v-for="comment in comments" :key="comment.id"><!--コメントのカード枠-->
             <template #legend>
               <span><!--10変更点-->
-                <router-link :to="`/user/${user.id}`">{{user.name}}</router-link>
+                <router-link :to="`/topic/${comment.topic_id}`">トピックへ</router-link>
               </span>
             </template>
             <div>
               <div class="comment-text">
-                <!--{{comment.body}}-->
-                {{comment.body}}<!--絶対パスだと値が取れるが…うーん????????????????-->
+                {{comment.body}}
               </div>
             </div>
             </Fieldset>
@@ -63,6 +66,10 @@
 
 <script>
 import axios from '@/supports/axios'
+
+function alert1 (errmessage) {
+  alert(errmessage)
+}
 
 export default {
   name: 'user',
@@ -105,6 +112,7 @@ export default {
             })
             .catch((err) => {
               console.log(err)
+              alert1(err)
             })
         })
         .catch((err) => {

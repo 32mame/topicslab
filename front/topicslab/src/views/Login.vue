@@ -17,7 +17,7 @@
         </div>
         <span class="style-red">{{message}}</span><!--きっとここ６番赤にする問題-->
         <div class="p-field">
-          <Button icon="pi pi-check" label="Login" v-on:click="login" />
+          <Button icon="pi pi-check" label="ログイン" v-on:click="login" />
         </div>
         <template v-if="loggedIn === false"><!--loggedInの値がfalseなら表示(逆にtrueは"loggedIn"ログイン単体)-->
           <div>
@@ -31,6 +31,10 @@
 
 <script>
 import axios from '@/supports/axios'
+
+function alert1 (errmessage) {
+  window.alert(errmessage)
+}
 
 export default {
   name: 'Login',
@@ -65,6 +69,7 @@ export default {
             .catch((err) => {
               console.log(err)
               this.message = 'ログインに失敗しました。'
+              alert1(err)
             })
         })
         .catch((err) => {

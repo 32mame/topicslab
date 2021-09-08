@@ -20,7 +20,7 @@
         </span>
       </div>
       <div class="p-field">
-        <Button icon="pi pi-check" label="Save" v-on:click="submit" />
+        <Button icon="pi pi-check" label="投稿" v-on:click="submit" />
         <span class="style-red">
           <p>{{messages.submit}}</p>
         </span>
@@ -31,6 +31,10 @@
 
 <script>
 import axios from '@/supports/axios'
+
+function alert1 (errmessage) {
+  alert(errmessage)
+}
 
 export default {
   name: 'NewTopic',
@@ -79,6 +83,7 @@ export default {
             .catch((err) => {
               console.log(err)
               this.messages.submit = '送信に失敗しました。'
+              alert1(err)
             })
         })
         .catch((err) => {

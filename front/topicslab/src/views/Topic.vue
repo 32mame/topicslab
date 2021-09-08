@@ -7,9 +7,11 @@
       <template #content>
         <div class="body-text">
           {{topic.body}}
-          <span>いいね！</span>
         <span>
-          <button @click="countUp"> {{ count }} </button>
+          <!-- <button @click="countUp"> {{ count }} </button> -->
+          <br>
+          <Button icon="pi pi-heart" class="p-button-rounded p-button-help p-button-outlined" @click="countUp" />
+          <span>{{ count }}</span>
         </span>
         </div>
       </template>
@@ -28,6 +30,10 @@
 import axios from '@/supports/axios'
 import Comments from '@/components/Comments'
 import CommentForm from '@/components/CommentForm'
+
+function alert1 (errmessage) {
+  alert(errmessage)
+}
 
 export default {
   name: 'Topic',
@@ -69,6 +75,7 @@ export default {
             })
             .catch((err) => {
               console.log(err)
+              alert1(err)
             })
         })
         .catch((err) => {
@@ -85,8 +92,6 @@ export default {
           axios.post(`/api/topic/${this.id}`)
             .then(res => {
               console.log(res)
-              localStorage.setItem('authenticated', 'false')
-              this.$router.push('/')
             })
             .catch(err => {
               console.log(err)
