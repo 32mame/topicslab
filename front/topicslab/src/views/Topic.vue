@@ -7,9 +7,11 @@
       <template #content>
         <div class="body-text">
           {{topic.body}}
-          <span>いいね！</span>
         <span>
-          <button @click="countUp"> {{ count }} </button>
+          <!-- <button @click="countUp"> {{ count }} </button> -->
+          <br>
+          <Button icon="pi pi-heart" class="p-button-rounded p-button-help p-button-outlined" @click="countUp" />
+          <span>{{ count }}</span>
         </span>
         </div>
       </template>
