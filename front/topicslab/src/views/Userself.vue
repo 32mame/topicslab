@@ -10,12 +10,12 @@
           <div>
             {{user.description}}
           </div>
-          <Button label="edit" v-on:click="isEdit=true" />
+          <Button label="自己紹介編集" v-on:click="isEdit=true" />
         </div>
         <div v-else>
           <Textarea v-model="description" :autoResize="true" rows="5" />
           <p>{{message}}</p>
-          <Button label="Update" v-on:click="update" />
+          <Button label="更新" v-on:click="update" />
           <!-- {{user.description}} -->
         </div>
       </template>

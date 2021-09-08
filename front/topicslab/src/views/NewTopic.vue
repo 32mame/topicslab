@@ -20,7 +20,7 @@
         </span>
       </div>
       <div class="p-field">
-        <Button icon="pi pi-check" label="Save" v-on:click="submit" />
+        <Button icon="pi pi-check" label="投稿" v-on:click="submit" />
         <span class="style-red">
           <p>{{messages.submit}}</p>
         </span>
