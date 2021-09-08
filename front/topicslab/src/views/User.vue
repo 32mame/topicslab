@@ -53,8 +53,7 @@
             </template>
             <div>
               <div class="comment-text">
-                <!--{{comment.body}}-->
-                {{comment.body}}<!--絶対パスだと値が取れるが…うーん????????????????-->
+                {{comment.body}}
               </div>
             </div>
             </Fieldset>
