@@ -54,7 +54,6 @@ export default {
         this.message = '全て必須項目です。'
         return
       }
-
       axios.get('/sanctum/csrf-cookie')
         .then(() => {
           axios.post('/api/register', {
