@@ -42,7 +42,8 @@
         </TabPanel>
         <TabPanel header="コメント">
           <template v-if="noComment">
-              <p>コメントはありません。</p>
+              <p v-if="loaded">コメントはありません。</p> <!--!loadedでfalse-->
+              <p v-else>ロード中です。</p>
             </template>
             <template v-else>
             <Fieldset v-for="comment in comments" :key="comment.id"><!--コメントのカード枠-->
