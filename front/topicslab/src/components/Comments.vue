@@ -9,8 +9,9 @@
       <div class="comment-text">
         {{comment.body}}
         <span>
-          <span>いいね！</span>
-          <button @click="()=>countUp(comment)">{{ comment.count }}</button>
+          <br>
+          <Button icon="pi pi-heart" class="p-button-rounded p-button-help p-button-outlined" @click="()=>countUp(comment)" />
+          <span>{{ comment.count }}</span>
         </span>
       </div>
     </Fieldset>
